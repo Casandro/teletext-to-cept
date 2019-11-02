@@ -8,7 +8,6 @@
 #define PLEN 40
 
 //Mosaik is pointer to integer if *mosaik==1 => graphics active, no translation
-
 void print_btx_char(uint8_t d, int lang, int * mosaik)
 {
 	d=d&0x7f;
