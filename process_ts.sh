@@ -4,9 +4,9 @@ TS=$1
 
 rm magazines/*
 rm pages/*
-rm cept/*
+rm level1/*
 
-./ts_to_packet < $TS | ./split_magazines magazines/ 
+./ts_to_es < $TS | ./split_magazines magazines/ 
 for x in magazines/*
 do
 	mn=`basename $x`
@@ -16,5 +16,5 @@ done
 for x in pages/*
 do
 	bn=`basename $x`
-	./page_to_cept < $x > cept/$bn.cept
+	./page_to_level1 < $x > level1/$bn.l1
 done
