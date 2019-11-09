@@ -17,8 +17,8 @@ int de_hamm(uint8_t x)
 void print_btx_char(uint8_t d, int lang, int * mosaik)
 {
 	d=d&0x7f;
-	if (d==0x19) ; else
-	if (d==0x1A); else
+	if (d==0x19) printf(" "); else
+	if (d==0x1A) printf(" "); else
 	if (d<0x20) {
 		if ((d>=0x10) && (d<=0x17)) {
 			*mosaik=1;
@@ -67,7 +67,7 @@ void print_line(int row, uint8_t *data, int lang)
 	int col=0;
 	if (row==0) col=8;
 	printf("\x1f%c%c",0x41+row,0x41+col);
-	printf("\x87          "); //kill features
+	printf("\x87\x9f"); //kill features
 	printf("\x1f%c%c",0x41+row,0x41+col);
 	int n;
 	int cnt=0;

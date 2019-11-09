@@ -6,7 +6,7 @@ rm magazines/*
 rm pages/*
 rm level1/*
 
-./ts_to_es < $TS | ./split_magazines magazines/ 
+./ts_to_es $2 < $TS | ./split_magazines magazines/ 
 for x in magazines/*
 do
 	mn=`basename $x`

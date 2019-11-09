@@ -27,6 +27,11 @@ int de_hamm(uint8_t x)
 
 int main(int argc, char **argv)
 {
+	if (argc!=2) {
+		printf("Usage %s <pid>\n", argv[0]);
+		return 1;
+	}
+	int wanted_pid=atoi(argv[1]);
 	uint8_t buf[PLEN];
 	while (read(0, buf, PLEN)==PLEN) {
 		uint32_t header=buf[0]<<24 | buf[1]<<16 | buf[2]<<8 | buf[3];
@@ -39,7 +44,7 @@ int main(int argc, char **argv)
 		int adaption_field_control=(header >> 4) & 0x3;
 		int continuity_counter=(header >>0) & 0xf;
 
-		if (pid!=0x100) continue;
+		if (pid!=wanted_pid) continue;
 		int start=4;
 //		printf("%02x, %04x adaption_field_control=%d PUSI=%d\n", sync, pid, adaption_field_control, payload_unit_start_indicator);
 		if (adaption_field_control==3) { //Adaption field present
